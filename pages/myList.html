@@ -27,6 +27,7 @@
             alt="SineFlick"
           />
         </div>
+         
         <nav class="navBar">
           <div class="open-btn" id="open">
             <i class="fa-solid fa-bars"></i>
@@ -564,6 +565,17 @@
             })
             .catch((error) => console.error("Error fetching movies:", error));
         }
+
+        function addToMyList(movieId) {
+        let myList = JSON.parse(localStorage.getItem("myList") || "[]"); // Mengambil daftar dari localStorage
+        if (!myList.includes(movieId)) {
+          myList.push(movieId); // Menambahkan ID film ke daftar
+          localStorage.setItem("myList", JSON.stringify(myList)); // Menyimpan daftar yang diperbarui ke localStorage
+          alert("Added to My List!");
+        } else {
+          alert("This movie is already in your My List.");
+        }
+      }
 
         function generateMovieCards(movies) {
           const movieContainer = document.getElementById("movieContainer");
